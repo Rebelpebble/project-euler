@@ -27,4 +27,4 @@ function checkIfPalindrome(number) {
   return digits === digitsReversed
 }
 
-console.log(solution(1000, 9999))
+console.log(solution(100, 999))
