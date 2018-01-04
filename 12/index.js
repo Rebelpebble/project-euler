@@ -15,15 +15,8 @@ function solution(numberOfFactors) {
 }
 
 function findAllFactors(number) {
-  const allFactors = []
-  for (let i = 1; i <= Math.pow(number, 0.5); i++) {
-    if (number % i === 0) {
-      allFactors.push(i)
-      allFactors.push(number / i)
-    }
-  }
-
-  return allFactors
+  const lowerFactors = _.range(1, Math.pow(number, 0.5), 1).filter(possibleFactor => number % possibleFactor === 0)
+  return lowerFactors.concat(lowerFactors.map(eachLowerFactor => number / eachLowerFactor))
 }
 
 function findTriangleNumber(termNumber) {
@@ -31,3 +24,5 @@ function findTriangleNumber(termNumber) {
 }
 
 console.log(solution(500)) // [76576500, [Factors], 576]
+
+//console.log(findAllFactors(500))
