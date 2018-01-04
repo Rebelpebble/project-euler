@@ -24,5 +24,3 @@ function findTriangleNumber(termNumber) {
 }
 
 console.log(solution(500)) // [76576500, [Factors], 576]
-
-//console.log(findAllFactors(500))
