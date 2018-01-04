@@ -1,7 +1,9 @@
+const _ = require('lodash')
+
 function solution(numberOfFactors) {
   let term = 1
-  let triangleNumber = findTriangleNumber(term) // 1
-  let allFactors = findAllFactors(triangleNumber) // 1
+  let triangleNumber
+  let allFactors = []
 
   while (allFactors.length <= numberOfFactors) { // This will continue evaluating to the next term that has more divisors than the numberOfFactors
     term += 1
@@ -9,7 +11,7 @@ function solution(numberOfFactors) {
     allFactors = findAllFactors(triangleNumber)
   }
 
-  return [triangleNumber, allFactors, allFactors.length]
+  return triangleNumber
 }
 
 function findAllFactors(number) {
@@ -21,17 +23,11 @@ function findAllFactors(number) {
     }
   }
 
-  return allFactors.sort( (a, b) => a - b )
+  return allFactors
 }
 
 function findTriangleNumber(termNumber) {
-  let runningTotal = 0
-
-  for (let i = 1; i <= termNumber; i++) {
-    runningTotal += i
-  }
-
-  return runningTotal
+  return _.range(0, termNumber + 1, 1).reduce( (accumulator, number) => accumulator + number)
 }
 
 console.log(solution(500)) // [76576500, [Factors], 576]
