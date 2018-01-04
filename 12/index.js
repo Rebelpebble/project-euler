@@ -23,4 +23,4 @@ function findTriangleNumber(termNumber) {
   return _.range(0, termNumber + 1, 1).reduce( (accumulator, number) => accumulator + number)
 }
 
-console.log(solution(500)) // [76576500, [Factors], 576]
+console.log(solution(500)) // 76576500
