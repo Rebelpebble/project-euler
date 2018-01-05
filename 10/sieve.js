@@ -2,25 +2,29 @@ const _ = require('lodash')
 
 
 function solution(maxNumber) {
-  const allNumbers = _.range(2, maxNumber + 1, 1)
+  const booleanValues = Array(maxNumber + 1).fill(false) // false = prime, true = not prime
+  booleanValues[0] = true
+  booleanValues[1] = true
 
-  // iterates through each value in the array as it shrinks in length
-  for (let i = 0; i <= allNumbers.length - 1; i++) {
-    let step = allNumbers[i]
-    let multiplier = step * 2
+  for (let i = 2; i <= maxNumber; i++) {
+    if (booleanValues[i]) {
+      continue
+    }
 
-    while (multiplier <= allNumbers[allNumbers.length - 1]) {
-      let indexOfMultiplier = allNumbers.findIndex(number => number === multiplier)
-
-      if (indexOfMultiplier !== -1) {
-        allNumbers.splice(indexOfMultiplier, 1)
-      }
-
-      multiplier += step
+    for (let j = i * 2; j <= maxNumber; j += i) {
+      booleanValues[j] = true
     }
   }
 
-  return allNumbers
+  const allPrimes = []
+
+  booleanValues.forEach( (boolean, index) => {
+    if (!boolean) {
+      allPrimes.push(index)
+    }
+  })
+
+  return allPrimes
 }
 
-console.log(solution(100))
+console.log(solution(1000000))
