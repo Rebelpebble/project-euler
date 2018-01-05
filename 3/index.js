@@ -17,4 +17,4 @@ function generatePrimeNumbers(maxNumber) {
   return primeNumbers
 }
 
-console.log(generatePrimeNumbers(1000000))
+console.log(generatePrimeNumbers(2000000))
