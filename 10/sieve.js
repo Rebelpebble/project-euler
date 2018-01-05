@@ -1,13 +1,26 @@
 const _ = require('lodash')
 
+
 function solution(maxNumber) {
-  const allOddNumbers = _.range(3, maxNumber + 1, 2)
+  const allNumbers = _.range(2, maxNumber + 1, 1)
 
-  allOddNumbers.forEach(function(oddNumber, index, thisArray) {
-    thisArray = thisArray.filter(eachNumber => eachNumber % oddNumber !== 0)
-  })
+  // iterates through each value in the array as it shrinks in length
+  for (let i = 0; i <= allNumbers.length - 1; i++) {
+    let step = allNumbers[i]
+    let multiplier = step * 2
 
-  return allOddNumbers
+    while (multiplier <= allNumbers[allNumbers.length - 1]) {
+      let indexOfMultiplier = allNumbers.findIndex(number => number === multiplier)
+
+      if (indexOfMultiplier !== -1) {
+        allNumbers.splice(indexOfMultiplier, 1)
+      }
+
+      multiplier += step
+    }
+  }
+
+  return allNumbers
 }
 
-console.log(solution(1000))
+console.log(solution(100))
